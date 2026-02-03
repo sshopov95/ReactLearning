@@ -1,0 +1,10 @@
+# oldschool - not using vite method for install -> react.dev -> installation
+
+
+
+<h1 class=""> не може да се ползва -> javascript reserved class -> ползва се className
+за евентите започват с lower и натам всяка дума е Upper camel case
+
+
+
+vite -> за създаване на base react app ->  npx create-vite@latest test-ui -> npm run dev
