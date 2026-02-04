@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
 
 const App = () => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(() => {
+    const notes = JSON.parse(localStorage.getItem('notes'));
+    return notes || [];
+  });
+  
+  /* Does not work - overriden by useState
+  // componentDidUpdate
+    useEffect(() => { 
+        notes = JSON.parse(localStorage.getItem('notes')); 
 
+        // componentWillUnmount
+        return () => { 
+            console.log('Component unmounted')
+        }; //Runs on unmount
+    }, [])*/
+
+
+  //              {кода който ще изпълни                               , кой проп следи за промени}
+  useEffect(() => {localStorage.setItem('notes',JSON.stringify(notes))}, [notes])
+  
   //Filter in this case - runtime only ...
   //Prop drilling! - 3 levels down
   const deleteNote = (id) => {
