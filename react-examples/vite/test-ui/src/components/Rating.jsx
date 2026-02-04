@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Star from "./Star";
+import Modal from "./Modal";
+import Button from "./Button";
 
 const Rating = ({description = "Rate your experience", color = 'gold', feedbackMessages = ['Terible', 'Poor','Fair','Good','Excelent']}) => { //Destructuring - Иначе се използва props тук и в h2 се ползва props.description
     /*//1 inline 
@@ -61,16 +63,18 @@ const Rating = ({description = "Rate your experience", color = 'gold', feedbackM
                 <h2>{description}</h2>
                 <div className="stars">
                     { stars.map((star, index)=> ( 
-                    //Using span
-                    //   <span 
-                    //   onClick={() => setRating(star)}
-                    //   onMouseEnter={() => setHover(star)} 
-                    //   onMouseLeave={() => setHover(0)} 
-                    //   key={star} 
-                    //   //className={`star${star<=(hover || rating)?'active':''}`}
-                    //   className='star'
-                    //   style={{ color: (star <= (hover || rating )) ? color : star.color }}
-                    //   >{'\u2605'}</span>
+                    
+                    
+                    /* //Using span
+                       <span 
+                       onClick={() => setRating(star)}
+                       onMouseEnter={() => setHover(star)} 
+                       onMouseLeave={() => setHover(0)} 
+                       key={star} 
+                       //className={`star${star<=(hover || rating)?'active':''}`}
+                       className='star'
+                       style={{ color: (star <= (hover || rating )) ? color : star.color }}
+                      >{'\u2605'}</span>*/
                     
                     //Using custom component containing span
                      <Star key = {star} 
@@ -85,9 +89,15 @@ const Rating = ({description = "Rate your experience", color = 'gold', feedbackM
                 </div>
                 {rating > 0 && <p className="feedback"> 
                     {feedbackMessages[rating-1]} </p>}
-             <button className="submit-btn" onClick={handleSubmit} disabled={rating===0}> Submit </button>
-            
+             
              {
+             //Replaced by Button component
+             //  <button className="submit-btn" onClick={handleSubmit} disabled={rating===0}> Submit </button>
+             }
+                <Button className="submit-btn" disabled={rating===0} onClick={() => handleSubmit()} >Submit</Button>
+             {
+                submitted && <Modal isOpen={submitted} onClose={closeModal} rating={rating}/>
+                /* Replaced by component - Modal
                 submitted && ( 
                 <div className="modal-overlay"> 
                 <div className="modal"> 
@@ -95,6 +105,7 @@ const Rating = ({description = "Rate your experience", color = 'gold', feedbackM
                     <button className="close-btn" onClick={() => closeModal()}>Close</button>
                     </div>
                     </div>)
+                    */
              }
             </div> );
 }

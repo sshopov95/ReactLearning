@@ -1,4 +1,4 @@
-# oldschool - not using vite method for install -> react.dev -> installation
+# oldschool - not using vite method for install -> https://react.dev/ -> installation
 
 
 
@@ -6,5 +6,6 @@
 за евентите започват с lower и натам всяка дума е Upper camel case
 
 
-
+cd до папката с example-a и след това npm i за да свали node_modules преди run dev
 vite -> за създаване на base react app ->  npx create-vite@latest test-ui -> npm run dev
+tailwind css install - npm i tailwindcss @tailwindcss/vite
