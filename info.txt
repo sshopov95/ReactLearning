@@ -9,3 +9,18 @@
 cd до папката с example-a и след това npm i за да свали node_modules преди run dev
 vite -> за създаване на base react app ->  npx create-vite@latest test-ui -> npm run dev
 tailwind css install - npm i tailwindcss @tailwindcss/vite
+
+
+
+env variables:
+- .env - Loaded in all cases (base default variables)
+- .env.local - Loaded in all cases but local only
+- .env.development, .env.production - Loaded in that mode only
+- .env.development.local, .env.production.local - Loaded in that mode only and local only
+- .env.test - Test specific config
+
+за vite задължително ползват VITE_ в началото на променливите.
+пример: VITE_API_URL = "https://blq.blq/"
+достъпва се с: import.meta.env.VITE_API_URL;
+създава се файл в /root ".env"
+ако не трябва да се качват -> gitignore
