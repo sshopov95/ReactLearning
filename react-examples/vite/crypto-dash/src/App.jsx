@@ -3,6 +3,8 @@ import HomePage from "./pages/home";
 import AboutPage from "./pages/about";
 import { Routes, Route } from "react-router";
 import Header from "./components/Header";
+import NotFoundPage from "./pages/notfound";
+import CoinDetailsPage from "./pages/coin-details";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -35,12 +37,12 @@ const App = () => {
       try {
         const res = await fetch(
           `${API_URL}` +
-            `vs_currency=eur&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false`,
+            `markets?vs_currency=eur&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false`,
         );
         if (!res.ok) throw new Error("Failed to fetch");
 
         const data = await res.json();
-        //console.log(data);
+        console.log(data);
         setCoins(data);
       } catch (err) {
         setError(err.message);
@@ -72,6 +74,8 @@ const App = () => {
         }
       />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/coin/:id" element={<CoinDetailsPage/>} />
+      <Route path="*" element={<NotFoundPage/>} /> {/*Задължително в края на рутера - а.к.а. всичко останало след гореспоменатите.*/}
     </Routes>
     </>
   );

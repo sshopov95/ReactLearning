@@ -24,3 +24,7 @@ env variables:
 достъпва се с: import.meta.env.VITE_API_URL;
 създава се файл в /root ".env"
 ако не трябва да се качват -> gitignore
+
+
+
+chart with dependencies: npm i chart.js react-chartjs-2 date-fns chartjs-adapter-date-fns
