@@ -1,17 +1,12 @@
 # oldschool - not using vite method for install -> https://react.dev/ -> installation
-
-
-
+*----------------------------------------------------------------------------------------------*
 <h1 class=""> не може да се ползва -> javascript reserved class -> ползва се className
 за евентите започват с lower и натам всяка дума е Upper camel case
-
-
+*----------------------------------------------------------------------------------------------*
 cd до папката с example-a и след това npm i за да свали node_modules преди run dev
 vite -> за създаване на base react app ->  npx create-vite@latest test-ui -> npm run dev
 tailwind css install - npm i tailwindcss @tailwindcss/vite
-
-
-
+*----------------------------------------------------------------------------------------------*
 env variables:
 - .env - Loaded in all cases (base default variables)
 - .env.local - Loaded in all cases but local only
@@ -25,13 +20,17 @@ env variables:
 създава се файл в /root ".env"
 ако не трябва да се качват -> gitignore
 
-
 - за Crypto-dash env файла съдържа единствено: VITE_API_URL = "https://api.coingecko.com/api/v3/coins/"
 *Знам че ще се пушне към гита - тва е идеята да го сложа тука 
-
+*----------------------------------------------------------------------------------------------*
 chart with dependencies: npm i chart.js react-chartjs-2 date-fns chartjs-adapter-date-fns
+*------------------------------------JSON-SERVER-----------------------------------------------*
+install package for dev env only" npm i -D json-server
 
+npm run json-server
+*----------------------------------------------------------------------------------------------*
 Build: 
 npm run build 
 създава папка dist с компилиран сайта в plain js
+*----------------------------------------------------------------------------------------------*
 
