@@ -1,4 +1,4 @@
-import ProductCard from "./ProductCard";
+import ProductCart from "./ProductCart";
 //import { useContext } from "react";
 //import { ProductContext } from "../context/ProductContext";
 import { useProducts } from "../context/ProductContext";
@@ -12,7 +12,7 @@ const ProductList = () => {
       {loading && <p>Loading....</p>}
       {error && <div className="error">{error}</div>}
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCart key={product.id} product={product} />
       ))}
     </div>
   );
