@@ -1,11 +1,16 @@
 import ProductCard from "./ProductCard";
+//import { useContext } from "react";
+//import { ProductContext } from "../context/ProductContext";
+import { useProducts } from "../context/ProductContext";
 
-const ProductList = ({ products }) => {
-  {
-    /* sm за малък екран md за средем и без нищо за голям - първия div */
-  }
+const ProductList = () => {
+  //const {products,loading, error} = useContext(ProductContext);
+  const {products,loading,error} = useProducts();
+  // sm за малък екран md за средем и без нищо за голям - първия div
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {loading && <p>Loading....</p>}
+      {error && <div className="error">{error}</div>}
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
