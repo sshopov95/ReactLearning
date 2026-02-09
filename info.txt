@@ -32,10 +32,10 @@ npm run json-server
 Build: 
 npm run build 
 създава папка dist с компилиран сайта в plain js
-*----------------------------------------------------------------------------------------------*
+
+*--------------------------------React router 7 example and up---------------------------------*
 Hook-овете не работят при SSR (Next.js etc).
 NB: При SSR useEffect/useState и т.н. не се изпълняват преди да мине Client Hydration-a (да зареди client side-a).
-
 *-----------------------------------TypeScript-------------------------------------------------*
 https://www.typescriptlang.org/play - Test ground
 
@@ -43,7 +43,6 @@ let isLoggedIn = true;
 //Type inference - "зачака" сам какъв тип трябва да е.
 isLoggedIn =22; //Err here 
 console.log(isLoggedIn);
-  
 
 *-Examples
 *-1-*
