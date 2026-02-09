@@ -21,6 +21,7 @@ env variables:
 ако не трябва да се качват -> gitignore
 
 - за Crypto-dash env файла съдържа единствено: VITE_API_URL = "https://api.coingecko.com/api/v3/coins/"
+- за friendly-dev: VITE_API_URL="http://localhost:8000"
 *Знам че ще се пушне към гита - тва е идеята да го сложа тука 
 *----------------------------------------------------------------------------------------------*
 chart with dependencies: npm i chart.js react-chartjs-2 date-fns chartjs-adapter-date-fns
