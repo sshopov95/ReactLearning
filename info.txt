@@ -33,4 +33,5 @@ Build:
 npm run build 
 създава папка dist с компилиран сайта в plain js
 *----------------------------------------------------------------------------------------------*
-
+Hook-овете не работят при SSR (Next.js etc).
+NB: При SSR useEffect/useState и т.н. не се изпълняват преди да мине Client Hydration-a (да зареди client side-a).
