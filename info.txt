@@ -35,3 +35,69 @@ npm run build
 *----------------------------------------------------------------------------------------------*
 Hook-овете не работят при SSR (Next.js etc).
 NB: При SSR useEffect/useState и т.н. не се изпълняват преди да мине Client Hydration-a (да зареди client side-a).
+
+*-----------------------------------TypeScript-------------------------------------------------*
+https://www.typescriptlang.org/play - Test ground
+
+let isLoggedIn = true;
+//Type inference - "зачака" сам какъв тип трябва да е.
+isLoggedIn =22; //Err here 
+console.log(isLoggedIn);
+  
+
+*-Examples
+*-1-*
+type User = {
+    name:string;
+    email:string;
+    age?:number;
+}
+
+const user:User = {
+    name:'Test',
+    email:'arede@abv.bg'
+}
+
+function sendEmail(user:User): string {
+    return `Email sent to ${user.email}`;
+}
+sendEmail(user);
+
+console.log(sendEmail({name:user.name, email: user.email}))
+*-2-*
+//Doing the same
+//const tags:string[] = ['dev','developer','javascript']
+const tags:Array<string> = ['dev','developer','javascript']
+tags.push('software');
+*-3 Desctruct-*
+Така не: 
+function printUser({name,age}){
+    console.log(`${name} is ${age}`)
+}
+
+Така:
+function printUser({name,age}: {name:string; age:number}){
+    console.log(`${name} is ${age}`)
+}
+
+*-4 Killing the idea of typescript!-*
+function identity (value:any){
+    return value;
+}
+
+const result1 = identity('1');
+result1.toFixed(); - гърми!
+
+const result2 = identity(1);
+const result3 = identity(true);
+
+Как трябва да изглежда за такива generic функции:
+function identity<T> (value:T){
+    return value;
+}
+
+const result1 = identity<string>('hello');
+result1.toUpperCase(); - работи
+
+const result2 = identity<number>(44);
+result1.toFixed(2); - работи

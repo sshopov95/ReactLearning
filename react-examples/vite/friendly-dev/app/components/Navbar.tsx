@@ -52,7 +52,8 @@ const Navbar = () => {
             </NavLink>
           </div>
         </div>
-        {/*Mobile Nav Button*/}
+        {/*Mobile Nav Button
+        md - meduim screens and up -> hidden*/}
         <div className="md:hidden flex items-center gap-4">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
