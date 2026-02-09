@@ -1,5 +1,5 @@
 import type { Route } from "./+types/index";
-
+import Hero from "~/components/Hero";
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "The Friendly Dev | Wellcome" },
@@ -8,14 +8,22 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const now = new Date().toISOString();
+  /*const now = new Date().toISOString();
 
   if (typeof window == "undefined") //Serverside
   {
     console.log("Server redner at:", now);
   } else {
     console.log("Client Hydration at:", now);
-  }
+  }*/
 
-  return <section> My app </section>;
+  /* return <section>
+    <h2 className="text-3xl font-bold text-white mb-8 text-center">
+                 My app 
+            </h2> </section>;*/
+  return (
+    <section>
+      <Hero name='Svet' />
+    </section>
+  );
 }
