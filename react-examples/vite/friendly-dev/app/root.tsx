@@ -28,7 +28,7 @@ export const links: Route.LinksFunction = () => [
 //Default fallback за имената на страниците които нямат метата дефайнната в tsx файла
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "The Friendly Derv" },
+    { title: "The Friendly Dev" },
     { name: "description", content: "Custom website dev" },
   ];
 }
