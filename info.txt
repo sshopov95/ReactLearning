@@ -28,6 +28,8 @@ chart with dependencies: npm i chart.js react-chartjs-2 date-fns chartjs-adapter
 install package for dev env only" npm i -D json-server
 
 npm run json-server
+*--------------------------------Animations package--------------------------------------------*
+npm i framer-motion
 *----------------------------------------------------------------------------------------------*
 Build: 
 npm run build 
