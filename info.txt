@@ -103,3 +103,6 @@ result1.toUpperCase(); - работи
 
 const result2 = identity<number>(44);
 result1.toFixed(2); - работи
+*---------------------------------Markdown-----------------------------------------------------*
+https://www.markdownguide.org/cheat-sheet/ - info
+https://stackedit.io/app# - for testing
