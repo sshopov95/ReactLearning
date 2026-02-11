@@ -106,3 +106,9 @@ result1.toFixed(2); - работи
 *---------------------------------Markdown-----------------------------------------------------*
 https://www.markdownguide.org/cheat-sheet/ - info
 https://stackedit.io/app# - for testing
+
+името на файла (md) трябва да е същото като slug-a
+
+npm i react-markdown
+npm i -D @tailwindcss/typography  - за стилизиране на маркдауна
+
