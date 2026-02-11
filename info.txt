@@ -112,3 +112,20 @@ https://stackedit.io/app# - for testing
 npm i react-markdown
 npm i -D @tailwindcss/typography  - за стилизиране на маркдауна
 
+
+
+
+*--------------------------------Headless CMS--------------------------------------------------*
+Преправен env файла на фронтенда на: 
+VITE_API_URL="http://localhost:1337/api"
+VITE_STRAPI_URL="http://localhost:1337"
+
+
+strapi:
+npx create-strapi-app@latest friendly-dev-backend
+npm run develop
+
+neon.com
+
+postgreSQL:
+npm i pg
