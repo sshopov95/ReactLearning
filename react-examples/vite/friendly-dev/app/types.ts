@@ -29,3 +29,8 @@ export type PostFilterData={
     searchQuery: string;
     onSearchChange: (value:string) => void
 }
+
+export type LatestPostsData={
+    posts: PostMeta[];
+    limit?: number;
+}
