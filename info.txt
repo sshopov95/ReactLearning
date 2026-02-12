@@ -22,6 +22,7 @@ env variables:
 
 - за Crypto-dash env файла съдържа единствено: VITE_API_URL = "https://api.coingecko.com/api/v3/coins/"
 - за friendly-dev: VITE_API_URL="http://localhost:8000"
+- за github-finder: VITE_GITHUB_API_URL=https://api.github.com
 *Знам че ще се пушне към гита - тва е идеята да го сложа тука 
 *----------------------------------------------------------------------------------------------*
 chart with dependencies: npm i chart.js react-chartjs-2 date-fns chartjs-adapter-date-fns
@@ -129,3 +130,9 @@ neon.com
 
 postgreSQL:
 npm i pg
+
+
+*------------------------------------TANSTACK--------------------------------------------------*
+tanstack.com
+
+npm i @tanstack/react-query
