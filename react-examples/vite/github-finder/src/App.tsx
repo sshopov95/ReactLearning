@@ -2,7 +2,7 @@ import UserSearch from "./components/UserSearch";
 
 const App = () => {
   return ( <div className="container">
-    My app
+    GitHub Finder
   
   <UserSearch/>
   </div> );
