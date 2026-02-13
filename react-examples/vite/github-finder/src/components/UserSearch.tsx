@@ -1,20 +1,36 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchGithubUser } from "../api/github";
+import { fetchGithubUser, searchGithubUser } from "../api/github";
 import UserCard from "./UserCard";
 import RecentSearches from "./RecentSearches";
+import { useDebounce } from "use-debounce";
+import type { GithubUser } from "../types";
+import UserSuggestions, {
+  type SuggestionDropdownProps,
+} from "./UserSuggestions";
 
 const UserSearch = () => {
   const [username, setUsername] = useState("");
   const [submittedUserName, setSubmittedUsername] = useState("");
   const [recentUsers, setRecentUsers] = useState<string[]>(() => {
-    const stored = localStorage.getItem('recentUsers');
-    return stored ? JSON.parse(stored) : []; });
+    const stored = localStorage.getItem("recentUsers");
+    return stored ? JSON.parse(stored) : [];
+  });
+  const [debauncedUsername] = useDebounce(username, 300);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  const { data, isLoading, isError, error } = useQuery({
+  // Query to fetch specific user
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["users", submittedUserName],
     queryFn: () => fetchGithubUser(submittedUserName),
     enabled: !!submittedUserName, //parse as bool
+  });
+
+  // Query to fetch suggestions for user search
+  const { data: suggestions } = useQuery({
+    queryKey: ["github-user-suggestions", debauncedUsername],
+    queryFn: () => searchGithubUser(debauncedUsername),
+    enabled: debauncedUsername.length > 1, //parse as bool
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,6 +38,7 @@ const UserSearch = () => {
     const trimmed = username.trim();
     if (!trimmed) return;
     setSubmittedUsername(trimmed);
+    setUsername("");
 
     setRecentUsers((prev) => {
       const updated = [trimmed, ...prev.filter((u) => u !== trimmed)]; //Filter duplicates
@@ -29,18 +46,45 @@ const UserSearch = () => {
     });
   };
 
-  useEffect(()=> {
-    localStorage.setItem('recentUsers',JSON.stringify(recentUsers));
-  },[recentUsers])
+  useEffect(() => {
+    localStorage.setItem("recentUsers", JSON.stringify(recentUsers));
+  }, [recentUsers]);
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter GitHub Username..."
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <div className="dropdown-wrapper">
+          <input
+            type="text"
+            placeholder="Enter GitHub Username..."
+            value={username}
+            onChange={(e) => {
+              const val = e.target.value;
+              setUsername(val);
+              setShowDropdown(val.trim().length > 1);
+            }}
+          />
+
+          {showDropdown && suggestions?.length > 0 && (
+            <UserSuggestions
+              show={showDropdown}
+              onSelect={(selected) => {
+                setUsername(selected);
+                setShowDropdown(false);
+
+                if (submittedUserName !== selected) {
+                  setSubmittedUsername(selected);
+                } else {
+                  refetch();
+                }
+                setRecentUsers((prev)=> {
+                     const updated = [selected, ...prev.filter((u) => u !== selected)]; //Filter duplicates
+                    return updated.slice(0, 5);
+                })
+              }}
+              suggestions={suggestions}
+            />
+          )}
+        </div>
         <button type="submit">Search</button>
       </form>
 
@@ -49,10 +93,13 @@ const UserSearch = () => {
 
       {data && <UserCard user={data} />}
       {recentUsers.length > 0 && (
-        <RecentSearches users={recentUsers} onSelect={(username)=>{
+        <RecentSearches
+          users={recentUsers}
+          onSelect={(username) => {
             setUsername(username);
             setSubmittedUsername(username);
-        }}/>
+          }}
+        />
       )}
     </>
   );
