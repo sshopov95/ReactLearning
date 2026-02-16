@@ -141,3 +141,14 @@ npm i @tanstack/react-query-devtools
 
 debounce - имплементира се таймер за изчакване преди да изпълни query-това
 npm i use-debounce
+
+
+*--------------------------------------TOAST notifications-------------------------------------*
+npm i sonner 
+
+import {toast} from 'sonner'
+...
+if(...)
+    toast.success('string');
+else
+    toast.error('string');
