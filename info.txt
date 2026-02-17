@@ -112,15 +112,10 @@ https://stackedit.io/app# - for testing
 
 npm i react-markdown
 npm i -D @tailwindcss/typography  - за стилизиране на маркдауна
-
-
-
-
 *--------------------------------Headless CMS--------------------------------------------------*
 Преправен env файла на фронтенда на: 
 VITE_API_URL="http://localhost:1337/api"
 VITE_STRAPI_URL="http://localhost:1337"
-
 
 strapi:
 npx create-strapi-app@latest friendly-dev-backend
@@ -130,8 +125,6 @@ neon.com
 
 postgreSQL:
 npm i pg
-
-
 *------------------------------------TANSTACK--------------------------------------------------*
 tanstack.com
 
@@ -141,8 +134,20 @@ npm i @tanstack/react-query-devtools
 
 debounce - имплементира се таймер за изчакване преди да изпълни query-това
 npm i use-debounce
+*------------------------------------TANSTACK router-------------------------------------------*
+folder structure
+\routes\ideas\index.tsx
+\routes\ideas\new\index.tsx
+\routes\ideas\$ideaId\index.tsx
 
 
+flat route  - в една папка всичко
+\routes\users.index.tsx
+\routes\users.profile.tsx
+\routes\users_.$userId.edit.tsx
+
+
+При създаване на раутове си актуализира само routeTree.gen.ts - не се пипа на ръка!
 *--------------------------------------TOAST notifications-------------------------------------*
 npm i sonner 
 
