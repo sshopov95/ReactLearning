@@ -32,7 +32,7 @@ install package for dev env only" npm i -D json-server
 npm run json-server
 *--------------------------------Animations package--------------------------------------------*
 npm i framer-motion
-*----------------------------------------------------------------------------------------------*
+*-----------------------------------Build------------------------------------------------------*
 Build: 
 npm run build 
 създава папка dist с компилиран сайта в plain js
@@ -148,6 +148,16 @@ flat route  - в една папка всичко
 
 
 При създаване на раутове си актуализира само routeTree.gen.ts - не се пипа на ръка!
+
+- За custom header-и да се добавят към определени папки -> добавя се route.tsx в папката която се сменя. 
+За да покаже компонентите които са били вече там се добавя <Outlet/> в return-a на компонента. 
+Пример:
+ideas/
+ideas/$ideaId/
+ideas/new/
+ideas/route.tsx <- return ..... <>My Header <Outlet/> </> 
+Ще добави текст MyHeader към всичките раутове в и под папката ideas.
+
 *--------------------------------------TOAST notifications-------------------------------------*
 npm i sonner 
 
@@ -157,3 +167,52 @@ if(...)
     toast.success('string');
 else
     toast.error('string');
+
+*-------------------------------------------icons----------------------------------------------*
+npm i lucide-react
+
+
+
+*-------------------------------------------api-EXPRESS----------------------------------------*
+mkdir idea-drop-api
+.code
+npm init
+
+{
+  "name": "idea-drop-api",
+  "version": "1.0.0",
+  "description": "Backend api for idea-drop-app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Svetoslav Shopov",
+  "license": "MIT",
+  "type": "module"
+}
+
+npm i express mongoose cors dotenv 
+Тест на сървъра: node server
+в package.json се добавят следните:
+"scripts": {
+    "start":"node server.js",
+    "dev":"node --watch server.js"
+  }
+след това npm run dev
+
+most needed http codes:
+200 - Ok
+201 - Created
+204 - No content (still ok tho) 
+
+400 - Bad request
+401 - Unauthorized
+403 - Forbidden
+404 - Not found
+
+500 - Internal server error 
+
+for good measure - преди всеки ендпойнт -> описание:
+//@route        GET /api/ideas
+//@description  Get all ideas
+//@access       Public
