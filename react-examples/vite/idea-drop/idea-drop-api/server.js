@@ -3,13 +3,18 @@ import cors from "cors";
 import dotenv from 'dotenv';
 import ideaRouter from './routes/ideaRoutes.js'
 import { errorHandler } from "./middleware/errorHandler.js";
+import connectDb from "./config/db.js";
+
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+// Connect to MongoDB
+connectDb();
 
 app.use(cors());
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 
 /*Basic get / post  - must be in routes folder cuz clutter 

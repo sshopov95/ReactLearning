@@ -6,8 +6,8 @@ import IdeaCard from "@/components/IdeaCard";
 
 
 const ideasQueryOptions = queryOptions({
-  queryKey: ['ideas'],
-  queryFn: fetchIdeas
+  queryKey: ['ideas', {limit:3}],
+  queryFn: () => fetchIdeas(3)
 
 })
 
@@ -15,9 +15,8 @@ const ideasQueryOptions = queryOptions({
 export const Route = createFileRoute("/")({ component: HomePage, loader: ({context})=>  context.queryClient.ensureQueryData(ideasQueryOptions)});
 
 function HomePage() {
-  const {data} = useSuspenseQuery(ideasQueryOptions);
-  const ideas = [...data].sort((a,b)=> new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-  const latestIdeas = ideas.slice(0, 3);
+  const {data : ideas} = useSuspenseQuery(ideasQueryOptions);
+  
   return (
     <div className="flex flex-col md:flex-row items-start justify-between gap-10 p-6 text-blue-600">
       <div className="flex flex-col items-start gap-4">
@@ -35,8 +34,8 @@ function HomePage() {
           Latest Ideas
         </h2>
         <div className="space-y-6">
-          {latestIdeas.map((idea)=>  
-          <IdeaCard key={idea.id} idea={idea} button={false} />)}
+          {ideas.map((idea)=>  
+          <IdeaCard key={idea._id} idea={idea} button={false} />)}
         </div>
 
         <div className="mt-6">
