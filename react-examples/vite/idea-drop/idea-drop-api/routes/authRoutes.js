@@ -11,7 +11,7 @@ const router = exress.Router();
 //@access       Public
 router.post("/register", async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body || {};
     if (!name || !email || !password) {
       res.status(400);
       throw new Error("All fields are required");
@@ -57,7 +57,7 @@ router.post("/register", async (req, res, next) => {
 //@access       Public
 router.post("/login", async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body || {}; //За fix на cannot destructurate email from body - При празни рекуести
 
     if (!email || !password) {
       res.status(400);
