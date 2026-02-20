@@ -163,6 +163,9 @@ ideas/new/
 ideas/route.tsx <- return ..... <>My Header <Outlet/> </> 
 Ще добави текст MyHeader към всичките раутове в и под папката ideas.
 
+- За създаване на папка без да е част от route-a се използват ()
+Пример в idea-drop-ui\src\routes\(auth)
+
 *--------------------------------------TOAST notifications-------------------------------------*
 npm i sonner 
 
