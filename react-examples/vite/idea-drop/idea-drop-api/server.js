@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
-import dotenv from 'dotenv';
-import ideaRouter from './routes/ideaRoutes.js'
+import dotenv from "dotenv";
+import ideaRouter from "./routes/ideaRoutes.js";
+import authRouter from "./routes/authRoutes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import connectDb from "./config/db.js";
 
@@ -13,9 +14,8 @@ const PORT = process.env.PORT || 8000;
 connectDb();
 
 app.use(cors());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 /*Basic get / post  - must be in routes folder cuz clutter 
 app.get('/api/ideas',({req,res}) => {
@@ -34,16 +34,15 @@ app.post('/api/ideas',({req,res}) => {
 })*/
 
 //Routes
-app.use('/api/ideas', ideaRouter);
-
+app.use("/api/ideas", ideaRouter);
+app.use("/api/auth", authRouter);
 
 //404 Fallback
-app.use((req,res,next)=>{
-    const error = new Error(`Not found - ${req.originalUrl}`)
-    res.status(404);
-    next(error);
-
-})
+app.use((req, res, next) => {
+  const error = new Error(`Not found - ${req.originalUrl}`);
+  res.status(404);
+  next(error);
+});
 
 app.use(errorHandler);
 

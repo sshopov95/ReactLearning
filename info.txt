@@ -23,7 +23,11 @@ env variables:
 - за Crypto-dash env файла съдържа единствено: VITE_API_URL = "https://api.coingecko.com/api/v3/coins/"
 - за friendly-dev: VITE_API_URL="http://localhost:8000"
 - за github-finder: VITE_GITHUB_API_URL=https://api.github.com
-- за idea-drop-api: MONGO_URI = "mongodb://localhost:27017/"
+- за idea-drop-api: 
+                    PORT = 8000
+                    MONGO_URI = "mongodb://localhost:27017/ideadrop"
+                    JWT_SECRET = "07382994318094761454936776050940"
+                    
 *Знам че ще се пушне към гита - тва е идеята да го сложа тука 
 *----------------------------------------------------------------------------------------------*
 chart with dependencies: npm i chart.js react-chartjs-2 date-fns chartjs-adapter-date-fns
@@ -217,3 +221,9 @@ for good measure - преди всеки ендпойнт -> описание:
 //@route        GET /api/ideas
 //@description  Get all ideas
 //@access       Public
+
+
+*------------------------------------JWT-------------------------------------------------------*
+npm i bcryptjs jose
+
+за secret-a може да се ползва: openssl rand -base64 32 
