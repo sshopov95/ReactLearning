@@ -3,7 +3,7 @@ import User from "../models/User.js";
 import mongoose from "mongoose";
 import { generateToken } from "../utils/generateToken.js";
 import { jwtVerify } from "jose";
-import { JWT_SECRET } from "../utils/getJwtSecret.js";
+import JWT_SECRET from "../utils/getJwtSecret.js";
 const router = exress.Router();
 
 //@route        POST api/auth/register
@@ -34,7 +34,7 @@ router.post("/register", async (req, res, next) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 30 * 24 * 60 * 60 * 1000, //30 days - days*hours*minutes*seconds*miliseconds ....
     });
 
@@ -88,7 +88,7 @@ router.post("/login", async (req, res, next) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 30 * 24 * 60 * 60 * 1000, //30 days - days*hours*minutes*seconds*miliseconds ....
     });
 
@@ -113,7 +113,7 @@ router.post("/logout", (req, res) => {
   res.clearCookie("refreshToken", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
   });
   res.status(200).json({ message: "Logged out" });
 });
