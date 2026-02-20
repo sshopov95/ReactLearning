@@ -5,6 +5,7 @@ import ideaRouter from "./routes/ideaRoutes.js";
 import authRouter from "./routes/authRoutes.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import connectDb from "./config/db.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ connectDb();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 /*Basic get / post  - must be in routes folder cuz clutter 
 app.get('/api/ideas',({req,res}) => {
